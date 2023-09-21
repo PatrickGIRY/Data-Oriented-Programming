@@ -1,0 +1,19 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "Data oriented programming unit test approch",
+  "main": "main.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [
+    "DOP",
+    "unit",
+    "test"
+  ],
+  "author": "Patrick GIRY",
+  "license": "ISC",
+  "devDependencies": {
+    "vitest": "^0.34.5"
+  }
+}
