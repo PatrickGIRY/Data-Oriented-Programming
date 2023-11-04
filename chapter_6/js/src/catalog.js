@@ -15,7 +15,7 @@ class Catalog {
   };
 
   static searchBooksByTitle = (catalogData, query) => {
-    const allBooks = _.get(catalogData, "booksByIsbn");
+    const allBooks = _.values(_.get(catalogData, "booksByIsbn"));
     const queryLowerCased = query.toLowerCase();
     const matchingBooks = _.filter(allBooks, (book) => {
       return _.get(book, "title").toLowerCase().includes(queryLowerCased);
