@@ -39,3 +39,40 @@ describe("Library.searhBooksByTitleJSON", () => {
     expect(result).toEqual([expectedBookInfo]);
   });
 });
+
+describe("Library.addMember", () => {
+  test("add member create a new library version", () => {
+    const jessie = {
+      email: "jessie@gmail.com",
+      password: "my-secret",
+    };
+
+    const libraryStateBefore = {
+      userManagement: {
+        memberByEmail: {
+          "franck@gmail.com": {
+            email: "franck@gmail.com",
+            password: "my-top-secret",
+          },
+        },
+      },
+    };
+    const expectedLibraryStateAfter = {
+      userManagement: {
+        memberByEmail: {
+          "jessie@gmail.com": {
+            email: "jessie@gmail.com",
+            password: "my-secret",
+          },
+          "franck@gmail.com": {
+            email: "franck@gmail.com",
+            password: "my-top-secret",
+          },
+        },
+      },
+    };
+
+    const result = Library.addMember(libraryStateBefore, jessie);
+    expect(result).toEqual(expectedLibraryStateAfter);
+  });
+});
