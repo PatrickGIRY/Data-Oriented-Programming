@@ -1,5 +1,6 @@
 import { expect, test, describe } from "vitest";
-import { SystemState, System } from "./system";
+import System from "./system";
+import SystemState from "./system-state";
 
 describe("System.addMember", () => {
   test("add member change system state", () => {
