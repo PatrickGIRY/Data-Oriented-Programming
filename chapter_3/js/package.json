@@ -1,0 +1,22 @@
+{
+  "name": "js",
+  "version": "1.0.0",
+  "description": "Data oriented programming manioulating with generic functions",
+  "main": "main.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "keywords": [
+    "DOP",
+    "unit",
+    "test"
+  ],
+  "author": "Patrick GIRY",
+  "license": "ISC",
+  "devDependencies": {
+    "vitest": "^0.34.5"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
