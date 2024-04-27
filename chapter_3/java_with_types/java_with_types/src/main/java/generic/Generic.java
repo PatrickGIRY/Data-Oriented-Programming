@@ -10,11 +10,11 @@ public final class Generic {
     }
 
     public static <T, R> Optional<R> get(T data) {
-        return Optional.empty();
+        return get(data, null);
     }
 
     public static <T, R> Optional<R> get(T data, Function<InfoPath<T>, InfoPath<R>> extractor) {
-        return extractor.apply(InfoPath.of(data)).findFirst();
+        return Optional.ofNullable(extractor).flatMap(e -> e.apply(InfoPath.of(data)).findFirst());
     }
 
     public interface InfoPath<T> {
