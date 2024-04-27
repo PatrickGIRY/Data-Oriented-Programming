@@ -43,3 +43,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+.lsp/.cache/db.transit.json
+.clj-kondo/.cache/v1/lock
