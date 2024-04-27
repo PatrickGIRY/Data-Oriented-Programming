@@ -11,6 +11,20 @@ class Generic {
       return undefined;
     }
   };
+
+  static map = (data, mapper) => {
+    var result = [];
+    if (data) {
+      if (data instanceof Array) {
+        result = mapper ? data.map(mapper) : data;
+      } else if (data instanceof Object) {
+        result = Object.keys(data).map((key) =>
+          mapper ? undefined : data[key]
+        );
+      }
+    }
+    return result;
+  };
 }
 
 export default Generic;
