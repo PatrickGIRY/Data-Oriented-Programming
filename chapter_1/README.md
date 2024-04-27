@@ -33,8 +33,8 @@ class Library {
 }
 
 class Catalog {
-    search(searchCriteria, queryStr): List~Book~
-    addBookItem(librarian: Librarian, bookItem: BookItem): BookItem
+    search(searchCriteria: String, query: String) List~Book~
+    addBookItem(librarian: Librarian, bookItem: BookItem) BookItem
 }
 
 class Book {
@@ -50,37 +50,37 @@ class Author {
 class BookItem {
     id: String
     libId: String
-    checkout(member: Member): BookLending
+    checkout(member: Member) BookLending
 }
 
 class BookLending {
     id: String
     lendingDate: date
     dueDate: date
-    isLate(): Bool
-    returnBook(): Bool
+    isLate() Bool
+    returnBook() Bool
 }
 
 class User {
     id: String
     email: String
     password: String
-    login(): Bool
+    login() Bool
 }
 
 class Librarian {
-    blockMember(member: Member): Bool
-    unblockMember(member: Member): Bool
-    addBookItem(bookItem: BookItem): BookItem
-    getBookLendingOfMember(member: Member): List~BookLending~
+    blockMember(member: Member) Bool
+    unblockMember(member: Member) Bool
+    addBookItem(bookItem: BookItem) BookItem
+    getBookLendingOfMember(member: Member) List~BookLending~
 }
 
 class Member {
-    isBlocked(): Bool
-    block(): Bool
-    unblock(): Bool
-    returnBook(lendingBook: LendingBook): Bool
-    checkout(bookItem: BookItem) : BookLending
+    isBlocked() Bool
+    block() Bool
+    unblock() Bool
+    returnBook(lendingBook: LendingBook) Bool
+    checkout(bookItem: BookItem) BookLending
 }
 
 Library *-- Catalog
@@ -96,4 +96,105 @@ Librarian ..> BookItem
 Librarian ..> BookLending
 Member *-- "*" BookLending
 Member ..> BookLending
+```
+
+The `Library` is the root class of the library system.
+
+* Data relations :
+  * `Library` has many `Member`s.
+  * `Member` has many `BookLending`s.
+* Code relations :
+  * `Member` extends `User`.
+  * `Librarian` uses `Member`.
+  * `Member` use `BookItem`.
+
+Class diagrams where every class is split into code and data entities
+
+```mermaid
+classDiagram
+class LibraryData {
+    name : String
+    address : String
+}
+class UserData {
+    id: String
+    email: String
+    password: String
+} 
+class MemberData
+class LibrarianData
+class CatalogData
+class BookData {
+    id: String
+    title: String
+}
+class AuthorData {
+    id: String
+    fullName: String
+}
+class BookItemData {
+    id: String
+    libId: String
+}
+class BookLendingData {
+    id: String
+    lendingDate: date
+    dueDate: date
+}
+
+LibraryData *--> "*" LibrarianData
+LibraryData *--> "*" MemberData
+LibraryData *--> CatalogData
+CatalogData *--> "*" BookData
+BookData "*" o--o "*" AuthorData
+BookData *-- "*" BookItemData
+BookItemData *-- BookLendingData
+MemberData *-- "*" BookLendingData
+UserData <|-- MemberData
+UserData <|-- LibrarianData
+```
+
+```mermaid
+classDiagram
+class CatalogCode {
+    search(catalog: CatalogData, searchCriteria: String, query: String)$ List~BookData~
+    addBookItem(catalog: CatalogData, librarian: LibrarianData, bookItem: BookItemData)$ BookItemData
+}
+
+class LibrarianCode {
+    blockMember(librarian: LibrarianData, member: MemberData)$ Bool
+    unblockMember(librarian: LibrarianData, member: MemberData)$ Bool
+    addBookItem(librarian: LibrarianData, bookItem: BookItemData)$ BookItemData
+    getBookLendingOfMember(librarian: LibrarianData, member: MemberData)$ List~BookLendingData~
+}
+
+class MemberCode {
+    isBlocked(member: MemberData)$ Bool
+    block(member: MemberData)$ Bool
+    unblock(member: MemberData)$ Bool
+    returnBook(member: MemberData, lendingBook: LendingBookData)$ Bool
+    checkout(member: MemberData, bookItem: BookItemData)$ BookLendingData
+}
+
+class BookLendingCode {
+    isLate(bookLending: BookLendingData)$ Bool
+    returnBook(BookLending: BookLendingData)$ Bool
+}
+
+class BookItemCode {
+    checkout(bookItem: BookItemData, member: MemberData)$ BookLendingData
+}
+
+class UserCode {
+    login(user: UserData)$ Bool
+}
+
+
+CatalogCode ..> LibrarianCode
+UserCode <|-- LibrarianCode
+UserCode <|-- MemberCode
+MemberCode ..> BookItemCode
+LibrarianCode ..> BookItemCode
+LibrarianCode ..> MemberCode
+LibrarianCode ..> BookLendingCode
 ```
