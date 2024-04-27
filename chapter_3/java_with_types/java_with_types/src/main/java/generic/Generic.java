@@ -23,24 +23,25 @@ public final class Generic {
             return () -> Stream.of(data);
         }
 
-        Stream<T> get();
+        Stream<T> stream();
 
         default <R> InfoPath<R> map(Function<? super T, ? extends R> mapper) {
-            return () -> this.get().map(mapper);
+            return () -> this.stream().map(mapper);
         }
-       default <K, R> InfoPath<R> map(K key, Class<R> valueType) {
-            return () -> this.get().mapMulti((data, consumer) -> {
-               if (data instanceof Map<?,?> m) {
-                   final Object value = m.get(key);
-                   if (value != null) {
-                       consumer.accept(valueType.cast(value));
-                   }
-               }
+
+        default <K, R> InfoPath<R> map(K key, Class<R> valueType) {
+            return () -> this.stream().mapMulti((data, consumer) -> {
+                if (data instanceof Map<?, ?> m) {
+                    final Object value = m.get(key);
+                    if (value != null) {
+                        consumer.accept(valueType.cast(value));
+                    }
+                }
             });
-       }
+        }
 
         default Optional<T> findFirst() {
-            return this.get().findFirst();
+            return this.stream().findFirst();
         }
     }
 }
