@@ -73,7 +73,7 @@ Member *-- "*" BookLending
 BookLending o-- BookItem
 ```
 
-Library management relation model. Dashed lines (e.g., between Book and Author) denote indirect relations, [String] denotes a positional collection of strings, and {Book} denotes an index of Books.
+The next step is to be more explicit about the relations between entities.
 
 ```mermaid
 classDiagram
@@ -142,3 +142,8 @@ UserManagement *-- "*" Member
 Member *-- "*" BookLending
 BookLending o.. BookItem
 ```
+
+Library management relation model. Dashed lines (e.g., between Book and Author) denote indirect relations, [String] denotes a positional collection of strings, and {Book} denotes an index of Books.
+
+> By positional collection, we mean a collection where the elements are in order (like a list or an array).
+> By index, we mean a collection where the elements are accessible via a key (like a hash map or a dictionary).
