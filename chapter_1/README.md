@@ -112,35 +112,14 @@ Class diagrams where every class is split into code and data entities
 
 ```mermaid
 classDiagram
-class LibraryData {
-    name : String
-    address : String
-}
-class UserData {
-    id: String
-    email: String
-    password: String
-} 
+class LibraryData
 class MemberData
 class LibrarianData
 class CatalogData
-class BookData {
-    id: String
-    title: String
-}
-class AuthorData {
-    id: String
-    fullName: String
-}
-class BookItemData {
-    id: String
-    libId: String
-}
-class BookLendingData {
-    id: String
-    lendingDate: date
-    dueDate: date
-}
+class BookData
+class AuthorData
+class BookItemData
+class BookLendingData
 
 LibraryData *--> "*" LibrarianData
 LibraryData *--> "*" MemberData
@@ -156,39 +135,12 @@ UserData <|-- LibrarianData
 
 ```mermaid
 classDiagram
-class CatalogCode {
-    search(catalog: CatalogData, searchCriteria: String, query: String)$ List~BookData~
-    addBookItem(catalog: CatalogData, librarian: LibrarianData, bookItem: BookItemData)$ BookItemData
-}
-
-class LibrarianCode {
-    blockMember(librarian: LibrarianData, member: MemberData)$ Bool
-    unblockMember(librarian: LibrarianData, member: MemberData)$ Bool
-    addBookItem(librarian: LibrarianData, bookItem: BookItemData)$ BookItemData
-    getBookLendingOfMember(librarian: LibrarianData, member: MemberData)$ List~BookLendingData~
-}
-
-class MemberCode {
-    isBlocked(member: MemberData)$ Bool
-    block(member: MemberData)$ Bool
-    unblock(member: MemberData)$ Bool
-    returnBook(member: MemberData, lendingBook: LendingBookData)$ Bool
-    checkout(member: MemberData, bookItem: BookItemData)$ BookLendingData
-}
-
-class BookLendingCode {
-    isLate(bookLending: BookLendingData)$ Bool
-    returnBook(BookLending: BookLendingData)$ Bool
-}
-
-class BookItemCode {
-    checkout(bookItem: BookItemData, member: MemberData)$ BookLendingData
-}
-
-class UserCode {
-    login(user: UserData)$ Bool
-}
-
+class CatalogCode
+class LibrarianCode
+class MemberCode
+class BookLendingCode
+class BookItemCode 
+class UserCode
 
 CatalogCode ..> LibrarianCode
 UserCode <|-- LibrarianCode
