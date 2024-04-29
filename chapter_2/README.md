@@ -1,6 +1,6 @@
 # Chapter 2 : Separation between code and data
 
-DOP principle #1 summarized: Separate code from data
+> DOP principle #1 summarized: Separate code from data
 
 ```mermaid
 mindmap
@@ -100,13 +100,21 @@ class Library {
 }
 ```
 
+## DOP system
+
 A mind map of the high-level data entities of the Library Management System
 
 ```mermaid
 mindmap
 root(Library data)
     Catalog
+        Books
+        Authors
+        Book items
+        Book lendings
     User management
+        Users
+        Members
 ```
 
  The modules of the Library Management System
