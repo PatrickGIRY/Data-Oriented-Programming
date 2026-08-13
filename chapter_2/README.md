@@ -3,6 +3,15 @@
 > DOP principle #1 summarized: Separate code from data
 
 ```mermaid
+---
+config:
+  layout: tidy-tree
+  theme: 'base'
+  themeVariables:
+    primaryColor: '#fde3e377'
+    primaryTextColor: '#ffffff'
+    primaryBorderColor: '#7C00'
+---
 mindmap
 root(Separated code from data)
     Code modules
@@ -47,6 +56,15 @@ The data entities of the system organized in a nested list
 A data entities of the system organized in a mind map
 
 ```mermaid
+---
+config:
+  layout: tidy-tree
+  theme: 'base'
+  themeVariables:
+    primaryColor: '#fde3e377'
+    primaryTextColor: '#ffffff'
+    primaryBorderColor: '#7C00'
+---
 mindmap
 root(Library data)
     Catalog
@@ -105,6 +123,15 @@ class Library {
 A mind map of the high-level data entities of the Library Management System
 
 ```mermaid
+---
+config:
+  layout: tidy-tree
+  theme: 'base'
+  themeVariables:
+    primaryColor: '#fde3e377'
+    primaryTextColor: '#ffffff'
+    primaryBorderColor: '#7C00'
+---
 mindmap
 root(Library data)
     Catalog
