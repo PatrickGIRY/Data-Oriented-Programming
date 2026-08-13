@@ -5,6 +5,15 @@
 A data mind map of the Library Management System
 
 ```mermaid
+---
+config:
+  layout: tidy-tree
+  theme: 'base'
+  themeVariables:
+    primaryColor: '#fde3e377'
+    primaryTextColor: '#ffffff'
+    primaryBorderColor: '#7C00'
+---
 mindmap
 root((Library data))
     Catalog
@@ -143,7 +152,11 @@ Member *-- "*" BookLending
 BookLending o.. BookItem
 ```
 
-Library management relation model. Dashed lines (e.g., between Book and Author) denote indirect relations, [String] denotes a positional collection of strings, and {Book} denotes an index of Books.
+Library management relation model.
 
-> By positional collection, we mean a collection where the elements are in order (like a list or an array).
-> By index, we mean a collection where the elements are accessible via a key (like a hash map or a dictionary).
+- Dashed lines (e.g., between Book and Author) denote indirect relations,
+- [String] denotes a positional collection of strings, and
+- {Book} denotes an index of Books.
+
+> - By positional collection, we mean a collection where the elements are in order (like a list or an array).
+> - By index, we mean a collection where the elements are accessible via a key (like a hash map or a dictionary).
