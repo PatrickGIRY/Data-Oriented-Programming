@@ -1,6 +1,6 @@
 # Chapter 1 : Complexity of object-oriented programming
 
-The requirements for the Klafim prototype
+## The requirements for the Klafim prototype
 
 - Two kinds of users: library members and librarians.
 - Users log in to the system via email and password.
@@ -11,7 +11,7 @@ The requirements for the Klafim prototype
 - There can be several copies of a book.
 - A book belongs to a physical library.
 
-The main classes of the library management system
+## The main classes of the library management system
 
 - Library—The central part of the system design.
 - Book—A book.
@@ -23,7 +23,7 @@ The main classes of the library management system
 - Catalog—Contains a list of books.
 - Author—A book author.
 
-A class diagram of Klafim's Global Library Management System
+## Klafim's Global Library Management System
 
 ```mermaid
 ---
@@ -145,8 +145,183 @@ Library *-- "*" Librarian
 ```
 
 The `Library` is the root class of the library system.
+
 In terms of code or behavior, a `Library` object does nothing on its own.
 It delegates everything to the object its owns.
+
+In terms of data, a `Librarian` object owns :
+
+- Multiple `Member` objects.
+- Multiple `Librarian` objects.
+- A single `Catalog` object.
+
+## `Lbrarian`, `Member` and `User` classes
+
+`Librarian` and `Member` both derive from `User`.
+
+```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+class Member {
+    isBlocked() Bool
+    block() Bool
+    unblock() Bool
+    returnBook(lendingBook: LendingBook) Bool
+    checkout(bookItem: BookItem) BookLending
+}
+
+class Librarian {
+    blockMember(member: Member) Bool
+    unblockMember(member: Member) Bool
+    addBookItem(bookItem: BookItem) BookItem
+    getBookLendingOfMember(member: Member) List~BookLending~
+}
+
+class User {
+    id: String
+    email: String
+    password: String
+    login() Bool
+}
+
+User <|-- Member
+User <|-- Librarian
+```
+
+The `User` class represents a user of the library :
+
+- In terms of data members, it sticks to the bare minimum: it has an `id`, `email`, and `password` (with no security and encryption for now).  
+- In terms of code, it can log in via login.
+
+The `Member` class represents a member of the library :
+
+- It inherits from `User`.
+- In terms of data members, it has nothing more than `User`.
+- In terms of code, it can :
+
+  - Check out a book via `checkout`.
+  - Return a book via `returnBook`.
+  - Block itself via `block`.
+  - Unblock itself via `unblock`.
+  - Answer if it is blocked via `isBlocked`.
+
+- It owns multiple `BookLending` objects.
+- It uses `BookItem` in order to implement `checkout`.
+
+The `Librarian` class represents a librarian :
+
+- It derives from `User`.
+- In terms of data members, it has nothing more than User.
+- In terms of code, it can
+
+  - Block and unblock a Member.
+  - List the member’s book lendings via `getBookLendings`.
+  - Add book items to the library via `addBookItem`.
+  
+- It uses `Member` to implement `blockMember`, `unblockMember`, and `getBookLendings`.
+- It uses `BookItem` to implement `checkout`.
+- It uses `BookLending` to implement `getBookLendings.`.
+
+## The `Catalog` class
+
+```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+class Catalog {
+    search(searchCriteria: String, query: String) List~Book~
+    addBookItem(librarian: Librarian, bookItem: BookItem) BookItem
+}
+
+class Librarian {
+    blockMember(member: Member) Bool
+    unblockMember(member: Member) Bool
+    addBookItem(bookItem: BookItem) BookItem
+    getBookLendingOfMember(member: Member) List~BookLending~
+}
+
+class Book {
+    id: String
+    title: String
+}
+
+Catalog ..> Librarian
+Catalog *-- "*" Book
+```
+
+The `Catalog` class is responsible for the mamagement of the books.
+
+In terms of code, a `Catalog` object can :
+
+- Search books via `search`.
+- Add book items to the library via `addBookItem`.
+
+A `Catalog`object uses `Librarian` in order to implement `addBookItem`.
+
+In terms of data, a `Catalog` owns multiple `Book` objects.
+
+## The `Book` class
+
+```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+
+class Book {
+    id: String
+    title: String
+}
+
+class Author {
+    id: String
+    fullName: String
+}
+
+class BookItem {
+    id: String
+    libId: String
+    checkout(member: Member) BookLending
+}
+
+class BookLending {
+    id: String
+    lendingDate: date
+    dueDate: date
+    isLate() Bool
+    returnBook() Bool
+}
+
+Book *-- "*" BookItem
+BookItem *-- BookLending
+Book "*" o--o "*" Author
+```
+
+In terms of data, a `Book` object :
+
+- Should have as its bare minimum an `id` and a `title`.
+- Is associated with multiple `Author` objects (a book might have multiple authors).
+- Owns multiple `BookItem` objects, one for each copy of the book.
+
+## `BookItem` class
+
+The `BookItem` class represents a book copy, and a book could have many copies.
+
+In terms of data, a `BookItem` object :
+
+- Should have as its bare minimum data for members : an `id` and a `libId` (for its physical library ID).
+- Owns multiple `BookLending` objects, one for each time the ook is lent.
+
+In terms of code, a `BookItem` object can be checked out via `checkout`.
 
 - Data relations :
   - `Library` has many `Member`s.
