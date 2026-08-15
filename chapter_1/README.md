@@ -312,7 +312,7 @@ In terms of data, a `Book` object :
 - Is associated with multiple `Author` objects (a book might have multiple authors).
 - Owns multiple `BookItem` objects, one for each copy of the book.
 
-## `BookItem` class
+## The `BookItem` class
 
 The `BookItem` class represents a book copy, and a book could have many copies.
 
