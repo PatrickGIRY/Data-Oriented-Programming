@@ -103,6 +103,44 @@ Librarian ..> BookLending
 Member *-- "*" BookLending
 Member ..> BookLending
 ```
+## The `Library` class
+
+```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
+classDiagram
+class Library {
+    name : String
+    address : String
+}
+
+class Catalog {
+    search(searchCriteria: String, query: String) List~Book~
+    addBookItem(librarian: Librarian, bookItem: BookItem) BookItem
+}
+
+class Member {
+    isBlocked() Bool
+    block() Bool
+    unblock() Bool
+    returnBook(lendingBook: LendingBook) Bool
+    checkout(bookItem: BookItem) BookLending
+}
+
+class Librarian {
+    blockMember(member: Member) Bool
+    unblockMember(member: Member) Bool
+    addBookItem(bookItem: BookItem) BookItem
+    getBookLendingOfMember(member: Member) List~BookLending~
+}
+
+Library *-- Catalog
+Library *-- "*" Member
+Library *-- "*" Librarian
+```
 
 The `Library` is the root class of the library system.
 In terms of code or behavior, a `Library` object does nothing on its own.
