@@ -26,6 +26,11 @@ The main classes of the library management system
 A class diagram of Klafim's Global Library Management System
 
 ```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
 classDiagram
 class Library {
     name : String
@@ -114,6 +119,11 @@ It delegates everything to the object its owns.
 Class diagrams where every class is split into code and data entities
 
 ```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
 classDiagram
 class LibraryData
 class MemberData
@@ -137,6 +147,11 @@ UserData <|-- LibrarianData
 ```
 
 ```mermaid
+---
+  config:
+    class:
+      hideEmptyMembersBox: true
+---
 classDiagram
 class CatalogCode
 class LibrarianCode
