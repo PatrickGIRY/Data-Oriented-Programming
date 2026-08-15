@@ -98,6 +98,7 @@ Book *-- "*" BookItem
 BookItem *-- BookLending
 User <|-- Librarian
 User <|-- Member
+Librarian ..> Member
 Librarian ..> BookItem
 Librarian ..> BookLending
 Member *-- "*" BookLending
