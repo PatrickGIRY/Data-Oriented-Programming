@@ -2,7 +2,7 @@
 
 The requirements for the Klafim prototype
 
-- There are two kinds of users: library members and librarians.
+- Two kinds of users: library members and librarians.
 - Users log in to the system via email and password.
 - Members can borrow books.
 - Members and librarians can search books by title or by author.
@@ -103,6 +103,7 @@ Librarian ..> BookLending
 Member *-- "*" BookLending
 Member ..> BookLending
 ```
+
 ## The `Library` class
 
 ```mermaid
