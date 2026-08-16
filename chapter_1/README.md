@@ -1,5 +1,9 @@
 # Chapter 1 : Complexity of object-oriented programming
 
+In object-oriented programming, programs should be composed from objects, which consist of some state, together with methods for accessing and manipulating that state.
+
+Every business entity is represented by an object, and ervery object is made from a class.
+
 ## The requirements for the Klafim prototype
 
 - Two kinds of users: library members and librarians.
