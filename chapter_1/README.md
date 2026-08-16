@@ -106,7 +106,7 @@ Librarian ..> Member
 Librarian ..> BookItem
 Librarian ..> BookLending
 Member *-- "*" BookLending
-Member ..> BookLending
+Member ..> BookItem
 ```
 
 ## The `Library` class
