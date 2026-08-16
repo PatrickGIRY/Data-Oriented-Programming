@@ -323,6 +323,17 @@ In terms of data, a `BookItem` object :
 
 In terms of code, a `BookItem` object can be checked out via `checkout`.
 
+## Many relations between classes
+
+In Object-Oriented Programming, code and data are mixed together in classes :
+
+- data as members.
+- code as methodes.
+
+> From a system analysis perspective, the fact that code and data are mixed together make the system complex in the sense that entities tend to be involved in many relations.
+
+For instance `Member` class is involved in five relations :
+
 - Data relations :
   - `Library` has many `Member`s.
   - `Member` has many `BookLending`s.
@@ -330,6 +341,8 @@ In terms of code, a `BookItem` object can be checked out via `checkout`.
   - `Member` extends `User`.
   - `Librarian` uses `Member`.
   - `Member` use `BookItem`.
+
+## Classes split into code and data entities
 
 Class diagrams where every class is split into code and data entities
 
