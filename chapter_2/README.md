@@ -33,13 +33,13 @@ root(Separated code from data)
 
 Highlighting terms in the requirements that correspond to data entities
 
-* There are two kinds of users: library _members_ and _librarians_.
-* _Users_ log in to the system via email and password.
-* _Members_ can borrow _books_.
-* _Members_ and _librarians_ can search books by title or by author.
-* _Librarians_ can block and unblock _members_ (e.g., when they are late in returning a book).
-* _Librarians_ can list the _books_ currently lent to a _member_.
-* There could be several copies of a _book_.
+* There are two kinds of users: library ***members*** and ***librarians***.
+* ***Users*** log in to the system via email and password.
+* ***Members*** can borrow ***books***.
+* ***Members*** and ***librarians*** can search ***books*** by title or by ***author***.
+* ***Librarians*** can block and unblock ***members*** (e.g., when they are late in returning a book).
+* ***Librarians*** can list the ***books currently lent*** to a ***member***.
+* There could be several ***copies of a book***.
 
 The data entities of the system organized in a nested list
 
@@ -83,12 +83,12 @@ root(Library data)
 Highlighting terms in the requirements that correspond to fontionality
 
 * There are two kinds of users: library members and librarians.
-* Users _log in to the system_ via email and password.
-* Members can _borrow_ books.
-* Members and librarians can _search books_ by title or by author.
-* Librarians can _block_ and _unblock members_ (e.g., when they are late in returning a book).
-* _Librarians_ can _list the books currently lent to a member_.
-* There could be several copies of a _book_.
+* Users ***log in to the system*** via email and password.
+* Members can ***borrow*** books.
+* Members and librarians can ***search books*** by title or by author.
+* Librarians can ***block*** and ***unblock members*** (e.g., when they are late in returning a book).
+* ***Librarians*** can ***list the books currently lent to a member***.
+* There could be several copies of a ***book***.
 
 The functionality of the library system
 
